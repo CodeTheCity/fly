@@ -20,7 +20,7 @@ class Quest(Resource):
 class QuestList(Resource):
     def get(self):
         n = Nature()
-        return json_util.dumps(n.pick_five())
+        return n.pick_five()
         
 api.add_resource(QuestList,'/api/quest/list/')
 

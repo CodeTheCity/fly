@@ -43,7 +43,7 @@ class Nature(Doc):
 	        items[my_random] = db[self.collection].find().limit(-1).skip(my_random).next()        
 		numbers.append(my_random)
 
-        return items
+        return items.values()
 
     def pick_one(self):
         """
