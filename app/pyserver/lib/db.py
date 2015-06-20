@@ -1,6 +1,7 @@
 import pymongo
 
 import config
+import json 
 
 client = pymongo.MongoClient(config.mongo_dsn)
 db = client['fly']
@@ -14,19 +15,32 @@ class Doc():
 
     def save():
         pass 
+    
+    def insert(self, doc):
+        """
+        Inserts a JSON document into the collection.
+        """
+        try:
+	    data = json.loads(doc)
+        except:
+            raise ValueError,"We were expecting a JSON document"
+
+        db[self.collection].insert(data)
+
 
 class Nature(Doc):
+    collection = 'nature'
     def pick_five(self):
         """
         """
         numbers = [] 
         items = {}
 
-        total = db['nature'].count()
+        total = db[self.collection].count()
         while len(numbers) < 5:
             my_random = randrange(0,total)
             if my_random not in numbers:
-	        items[my_random] = db['nature'].find().limit(-1).skip(my_random).next()        
+	        items[my_random] = db[self.collection].find().limit(-1).skip(my_random).next()        
 		numbers.append(my_random)
 
         return items
