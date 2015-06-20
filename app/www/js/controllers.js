@@ -19,11 +19,12 @@ angular.module('starter.controllers', [])
             path: '/me',
             success: function(data) {
 
-              console.log(JSON.stringify(data));
+              var final = JSON.stringify(data);
               var data = data;
               var src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
               $scope.userdata = data;
               $scope.userdata.src = src;
+              alert(final)
             },
             error: function(e) {
               console.log(e)
