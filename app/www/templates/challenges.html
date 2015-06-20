@@ -1,8 +1,39 @@
 <ion-view view-title="Challenges">
   <ion-content>
     <h1>challenges</h1>
-    <button ng-click="redirect('trophyroom')" class="button button-calm" >Trophyroom</button>
-		<button ng-click="redirect('welcome')" class="button button-calm" >Welcome</button>
-    <button ng-click="redirect('leaderboard')" class="button button-calm" >Leaderboard</button>
+    <!-- <button ng-click="redirect('trophyroom')" class="button button-calm" >Trophyroom</button> -->
+		<!-- <button ng-click="redirect('welcome')" class="button button-calm" >Back</button> -->
+    <!-- <button ng-click="redirect('leaderboard')" class="button button-calm" >Leaderboard</button> -->
+    <br/>
+
+    <div class="card">
+	  <div class="item item-text-wrap">
+	    The next quest will be available in {{timer}}
+	  </div>
+	</div>
+
+	<div class="card">
+
+
+		<div class="row">
+		  <div class="col col-top"></div>
+		  <div class="col col-center">
+		  	<button ng-click="redirect('questroom')" ng-disabled="isDisabled" class="button button-balanced">  
+	  			Get Quest
+				</button>
+		  </div>
+		  <div class="col col-bottom"></div>
+		</div>
+
+
+	</div>
+	  	
+
+
+	  </div>
+	</div>
+
+
+
   </ion-content>
 </ion-view>
