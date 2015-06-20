@@ -30,6 +30,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'LoginCtrl'
   })
 
+  .state('welcome', {
+    url: "/welcome",
+    abstract: false,
+    templateUrl: "templates/welcome.html",
+    controller: 'WelcomeCtrl'
+  })
+
   .state('app', {
     url: "/app",
     abstract: true,
@@ -76,5 +83,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/welcome');
 });
