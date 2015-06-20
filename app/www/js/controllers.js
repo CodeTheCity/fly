@@ -1,11 +1,27 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope) {
 
-  
 
+
+
+.controller('WelcomeCtrl', function($scope) {
 
 })
+
+.controller('LoginCtrl', function($scope) {
+
+})
+
+
+
+
+
+
+
+
+
+
+// ======================================================== OLD
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   
   // With the new view caching in Ionic, Controllers are only called
