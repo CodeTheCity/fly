@@ -3,6 +3,39 @@ angular.module('starter.controllers', [])
 
 
 .controller('LoginCtrl', function($scope) {
+  openFB.init({
+    appId: '786735534689395'
+  });
+  var callback = function(a) {
+    console.log(a);
+    console.log('-------------------')
+  };
+  $scope.userdata = {};
+  $scope.loginViaFB = function login() {
+    openFB.login(
+      function(response) {
+        if (response.status === 'connected') {
+          openFB.api({
+            path: '/me',
+            success: function(data) {
+
+              console.log(JSON.stringify(data));
+              var data = data;
+              var src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+              $scope.userdata = data;
+              $scope.userdata.src = src;
+            },
+            error: function(e) {
+              console.log(e)
+            }
+          });
+        } else {
+          alert('Facebook login failed: ' + response.error);
+        }
+      }, {
+        scope: 'email'
+      });
+  }
 
 })
 
@@ -33,20 +66,20 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
-  
+
   $scope.timer = 10;
   $scope.isDisabled = true;
-  var interval =  $interval(function() {
+  var interval = $interval(function() {
     $scope.timer--;
-    if($scope.timer === 0){
+    if ($scope.timer === 0) {
       $interval.cancel(interval);
       $scope.isDisabled = false;
     }
-      
-    
-    
-  },1000);
-  
+
+
+
+  }, 1000);
+
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
