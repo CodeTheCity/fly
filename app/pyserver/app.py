@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
-from lib.db import Nature, Find, User, Quest
+from lib.db import Doc, Nature, Find, User, Quest
 import json
 
 app = Flask(__name__)
@@ -13,15 +13,6 @@ def welcome():
     return render_template('welcome.html') 
 
 
-class CurrentQuest(Resource):
-    def get(self):
-        pass
-
-
-    def post(self):
-        pass
-
-
 class QuestList(Resource):
     """
     Generate a list of five random quest items
@@ -31,14 +22,13 @@ class QuestList(Resource):
         return n.pick_five()
 
 
-class UserFind(Resource):
-    """
-    POST a new find or GET a recorded one    
-    """
-    def get(self,id):
-        return {}
+class StorableResource(Resource):
+    obj = Doc
+    def get(self, id):
+        o = self.obj()
+        return o.pick_one() 
 
-    def post(self,id=None):
+    def post(self):
         """
         Add a new find to the collection.
         """
@@ -58,23 +48,33 @@ class UserFind(Resource):
         except ValueError, e:
             return {'error', e.message}, 500
 
-        find = Find()
-        data['_id'] = find.get_next_in_sequence()
+        o = self.obj()
+        data['_id'] = o.get_next_in_sequence()
 
-        find.insert(json.dumps(data))
+        o.insert(json.dumps(data))
         return {'success':data['_id']}, 200
 
+class CurrentQuest(StorableResource):
+    def get(self):
+        q = Quest()
+        return q.pick_one()
 
-class UserDetails(Resource):
+    def post(self):
+        pass
+
+class UserFind(StorableResource):
+    """
+    POST a new find or GET a recorded one
+    """
+    obj = Find
+
+
+class UserDetails(StorableResource):
     """
     
     """
-    def get(self, id):
-        return {}, 200 
-
-    def post(self, id=None):
-	pass
-   
+    obj = User  
+ 
 class RecentFinds(Resource):
     """
     """
@@ -89,12 +89,12 @@ class Scoreboard(Resource):
     def get(self):
         pass 
   
-api.add_resource(QuestList,'/api/quest/list/')
-api.add_resource(UserFind,'/api/find/', '/api/find/<id>')
+api.add_resource(QuestList, '/api/quest/list/')
+api.add_resource(UserFind, '/api/find/', '/api/find/<id>')
 api.add_resource(RecentFinds,'/api/finds/recent/')
-api.add_resource(UserDetails,'/api/user/<id>')
-api.add_resource(Scoreboard,'/api/scoreboard/')
-api.add_resource(CurrentQuest,'/api/quest/')
+api.add_resource(UserDetails, '/api/user/', '/api/user/<id>')
+api.add_resource(Scoreboard, '/api/scoreboard/')
+api.add_resource(CurrentQuest, '/api/quest/')
 
 
 if __name__ == '__main__':

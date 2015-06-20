@@ -10,6 +10,7 @@ from random import randrange
 
 class Doc():
     collection = 'default'
+    counter = None
     def __init__(self):
         pass
 
@@ -72,7 +73,8 @@ class Find(Doc):
 
 
 class User(Doc):
-    pass
+    counter = 'user'
+    collection = 'user'
 
 
 
