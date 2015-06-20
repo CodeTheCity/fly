@@ -1,10 +1,11 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def welcome():
-    return open("index.html","r").read()
+    return render_template("welcome.html")
 
-app.run()
+app.run(debug=True)
