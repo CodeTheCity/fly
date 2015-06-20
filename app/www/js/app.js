@@ -30,12 +30,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'LoginCtrl'
   })
 
-  .state('welcome', {
-    url: "/welcome",
-    abstract: false,
-    templateUrl: "templates/welcome.html",
-    controller: 'WelcomeCtrl'
-  })
+
 
   .state('app', {
     url: "/app",
@@ -44,44 +39,60 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
+
+
+
+
+  .state('app.welcome', {
+    url: "/welcome",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/welcome.html",
+        controller: 'WelcomeCtrl'
+      }
+    }
+  })
+
+  .state('app.leaderboard', {
+    url: "/leaderboard",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/leaderboard.html",
+        controller: 'LeaderboardCtrl'
+      }
+    }
+  })
+
+  .state('app.trophyroom', {
+    url: "/trophyroom",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/trophyroom.html",
+        controller: 'TrophyroomCtrl'
+      }
+    }
+  })
+
+  .state('app.challenges', {
+    url: "/challenges",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/challenges.html",
+        controller: 'ChallengesCtrl'
+      }
+    }
+  })
+
   
 
-  .state('app.search', {
-    url: "/search",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/search.html"
-      }
-    }
-  })
 
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: "/playlists/:playlistId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/welcome');
+  $urlRouterProvider.otherwise(function() {
+    console.log('other')
+    return '/app/welcome'
+  });
 });
