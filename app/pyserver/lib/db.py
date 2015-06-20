@@ -9,7 +9,7 @@ from random import randrange
 
 
 class Doc():
-
+    collection = 'default'
     def __init__(self):
         pass
 
@@ -27,6 +27,21 @@ class Doc():
 
         db[self.collection].insert(data)
 
+    def recent_n(self,number):
+        return list(db[self.collection].find().limit(number))
+ 
+    def get_next_in_sequence(self):
+        doc = db['counters'].find_and_modify(
+            query = { "_id": self.counter}, 
+            update = {"$inc":{"seq":1}},
+            new=True)
+        return int(doc['seq'])
+
+    def pick_one(self):
+        """
+        Pick a random animal, vegetable, etc
+        """
+        return db[self.collection].find_one()
 
 class Nature(Doc):
     collection = 'nature'
@@ -45,19 +60,15 @@ class Nature(Doc):
 
         return items.values()
 
-    def pick_one(self):
-        """
-        Pick a random animal, vegetable, etc
-	"""
-        return db['nature'].find_one()
-
 
 class Quest(Doc):
     pass
 
 
 class Find(Doc):
-    pass
+    collection = 'find'
+    counter = 'find'
+         
 
 
 class User(Doc):
