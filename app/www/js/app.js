@@ -98,6 +98,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.map', {
+    url: "/map",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/map.html",
+        controller: 'MapCtrl'
+      }
+    }
+  })
   
 
 

@@ -25,6 +25,13 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('MapCtrl', function($scope, $state) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+})
+
+
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
   
   $scope.timer = 10;
