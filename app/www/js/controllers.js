@@ -2,16 +2,34 @@ angular.module('starter.controllers', [])
 
 
 
-
-
-.controller('WelcomeCtrl', function($scope) {
-
-})
-
 .controller('LoginCtrl', function($scope) {
 
 })
 
+.controller('WelcomeCtrl', function($scope, $state) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+})
+
+.controller('LeaderboardCtrl', function($scope, $state) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+})
+
+
+.controller('TrophyroomCtrl', function($scope, $state) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+})
+
+.controller('ChallengesCtrl', function($scope, $state) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+})
 
 
 
@@ -23,14 +41,14 @@ angular.module('starter.controllers', [])
 
 // ======================================================== OLD
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  
+
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  
+
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -64,15 +82,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  $scope.playlists = [{
+    title: 'Reggae',
+    id: 1
+  }, {
+    title: 'Chill',
+    id: 2
+  }, {
+    title: 'Dubstep',
+    id: 3
+  }, {
+    title: 'Indie',
+    id: 4
+  }, {
+    title: 'Rap',
+    id: 5
+  }, {
+    title: 'Cowbell',
+    id: 6
+  }];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+.controller('PlaylistCtrl', function($scope, $stateParams) {});
