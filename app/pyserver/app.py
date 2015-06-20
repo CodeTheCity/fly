@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def welcome():
-    return render_template("index.html")
-    #return "welcome"
+    return render_template("welcome.html")
 
 app.run(debug=True)
