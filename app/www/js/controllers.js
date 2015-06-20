@@ -25,10 +25,55 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChallengesCtrl', function($scope, $state) {
+.controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
+  
+  $scope.timer = 10;
+  $scope.isDisabled = true;
+  var interval =  $interval(function() {
+    $scope.timer--;
+    if($scope.timer === 0){
+      $interval.cancel(interval);
+      $scope.isDisabled = false;
+    }
+      
+    
+    
+  },1000);
+  
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
+
+  var data = {
+    resource_id: '8090096e-16aa-43cc-93ae-bfb4acb8cc54', // the resource id
+    limit: 5, // get 5 results
+    q: '' // query for 'jones'
+  };
+
+  $scope.data = $http({
+    method: 'GET',
+    dataType: 'jsonp',
+    url: 'http://edinburghopendata.info/api/action/datastore_search',
+    params: data
+
+  }).success(function(data, status) {
+    $scope.people = data;
+  });
+
+  // $http.jsonp('http://edinburghopendata.info/api/action/datastore_search', {
+  //   data: data
+  // }).
+  // success(function(data, status, headers, config) {
+  //   console.log(data)
+  //   // this callback will be called asynchronously
+  //   // when the response is available
+  // }).
+  // error(function(data, status, headers, config) {
+  //   // called asynchronously if an error occurs
+  //   // or server returns response with an error status.
+  // });
+
+
 })
 
 

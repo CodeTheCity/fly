@@ -8,7 +8,7 @@
 
     <div class="card">
 	  <div class="item item-text-wrap">
-	    The next quest will be available in 
+	    The next quest will be available in {{timer}}
 	  </div>
 	</div>
 
@@ -18,7 +18,7 @@
 		<div class="row">
 		  <div class="col col-top"></div>
 		  <div class="col col-center">
-		  	<button ng-click="redirect('questroom')" class="button button-balanced">  <!-- disabled="true"> -->
+		  	<button ng-click="redirect('questroom')" ng-disabled="isDisabled" class="button button-balanced">  
 	  			Get Quest
 				</button>
 		  </div>
