@@ -65,6 +65,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.questroom', {
+    url: "/questroom",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/questroom.html"
+        // controller: 'LeaderboardCtrl'
+      }
+    }
+  })
+
   .state('app.trophyroom', {
     url: "/trophyroom",
     abstract: false,
