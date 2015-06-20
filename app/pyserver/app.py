@@ -8,4 +8,4 @@ app = Flask(__name__)
 def welcome():
     return render_template("welcome.html")
 
-app.run(debug=True)
+#app.run(debug=True)
