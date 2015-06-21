@@ -4,19 +4,21 @@ from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest, db
 import datetime
 
+"""
 from flask.ext.cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-
+"""
 api = Api(app)
+app = Flask(__name__)
 
 
 #cj = None
 
 
 @app.route('/current_quest')
-@cross_origin()
+#@cross_origin()
 def get_quest():
     client = pymongo.MongoClient("mongodb://codethecity:edinburghapps@ds049570.mongolab.com:49570/fly")
     db = client['fly']
@@ -29,13 +31,13 @@ def get_quest():
 
 
 @app.route('/')
-@cross_origin()
+#@cross_origin()
 def welcome():
     return render_template('welcome.html') 
 
     
 @app.route('/api/time')
-@cross_origin()
+#@cross_origin()
 def get_next_quest_time():
     q = Quest()
     latest = q.pick_one()
