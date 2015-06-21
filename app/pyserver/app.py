@@ -15,17 +15,17 @@ cj = None
 def welcome():
     return render_template('welcome.html') 
 
-@app.route('/species')
-def species():
-    global cj
-    if cj == None or int(cj["time"])/1000. < time.time():
-        jf = open("dat.json",'r')
-        cj = json.load(jf)
-        jf.close()
-        
-    return json.dumps(cj["species"])
+#@app.route('/species')
+#def species():
+#    global cj
+#    if cj == None or int(cj["time"])/1000. < time.time():
+#        jf = open("dat.json",'r')
+#        cj = json.load(jf)
+#        jf.close()
+#        
+#    return json.dumps(cj["species"])
     
-@app.route('/time')
+@app.route('/api/time')
 def getTime():
     global cj
     if cj == None or int(cj["time"])/1000. < time.time():
@@ -36,8 +36,7 @@ def getTime():
     return str(cj["time"])
 
 
-
-class QuestList(Resource):
+class Species(Resource):
     """
     Generate a list of five random quest items
     """
@@ -60,8 +59,9 @@ class StorableResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('data',type=str)
         args = parser.parse_args()
-
+        
         data = {}        
+
         input = args['data']
 
         # we roundtrip the data into python and back to JSON
@@ -112,13 +112,14 @@ class Scoreboard(Resource):
     """
     def get(self):
         pass 
-  
-api.add_resource(QuestList, '/api/quest/list/')
-api.add_resource(UserFind, '/api/find/', '/api/find/<id>')
-api.add_resource(RecentFinds,'/api/finds/recent/')
-api.add_resource(UserDetails, '/api/user/', '/api/user/<id>')
-api.add_resource(Scoreboard, '/api/scoreboard/')
-api.add_resource(CurrentQuest, '/api/quest/')
+
+
+api.add_resource(Species, '/quest/species/')
+api.add_resource(UserFind, '/find/', '/find/<id>')
+api.add_resource(RecentFinds,'/finds/recent/')
+api.add_resource(UserDetails, '/user/', '/user/<id>')
+api.add_resource(Scoreboard, '/scoreboard/')
+api.add_resource(CurrentQuest, '/quest/')
 
 
 if __name__ == '__main__':
