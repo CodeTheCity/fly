@@ -19,10 +19,10 @@ def get5Creatures():
         c5[i] = {"name":cc["Common name"],"latin":cc["Scientific name"],"type":cc["Group"],"desc":"","img":"","id":cc["_id"]}
         fixedlatin=""
         inbk = False
-        for letter in c5[i]["latin"]
-            if letter = "(":
+        for letter in c5[i]["latin"]:
+            if letter =="(":
                 inbk = True
-            elif letter = ")":
+            elif letter == ")":
                 inbk = False
             elif not inbk:
                 fixedlatin += letter
