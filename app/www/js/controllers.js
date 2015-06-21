@@ -214,7 +214,7 @@ angular.module('starter.controllers', [])
   
   $scope.userdata = HARDCODEDUSER;
   
-  $scope.timer = 1;
+  $scope.timer = 6;
   $scope.isDisabled = true;
   var interval = $interval(function() {
     $scope.timer--;
