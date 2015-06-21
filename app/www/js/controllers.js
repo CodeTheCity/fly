@@ -44,7 +44,9 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('WelcomeCtrl', function($scope, $state) {
+.controller('WelcomeCtrl', function($scope, $state, $timeout) {
+  $scope.initial = true; 
+  
   $scope.userdata = HARDCODEDUSER;
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
