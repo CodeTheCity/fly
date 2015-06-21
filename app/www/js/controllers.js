@@ -1,21 +1,9 @@
+var HARDCODEDUSER = {"id":"1409029225","birthday":"02/28/1983","email":"mrnz@wp.pl","first_name":"Przemek","gender":"male","last_name":"Marciniak","link":"http://www.facebook.com/1409029225","locale":"en_US","name":"Przemek Marciniak","timezone":1,"updated_time":"2015-01-05T22:47:38+0000","verified":true,"src":"http://graph.facebook.com/1409029225/picture?type=large"};
+
 angular.module('starter.controllers', [])
 
 
 .controller('AppCtrl', function($scope) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.subheaderTitle = 'pdsaospdao';
-
- 
-
-  
 })
 
 .controller('LoginCtrl', function($scope) {
@@ -36,10 +24,11 @@ angular.module('starter.controllers', [])
 
               var final = JSON.stringify(data);
               var data = data;
-              var src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+              var src = 'http://graph.facebook.com/' + data.id + '/picture?type=large';
               $scope.userdata = data;
               $scope.userdata.src = src;
-              alert(final)
+              final.src = src;
+              HARDCODEDUSER = final;
             },
             error: function(e) {
               console.log(e)
@@ -55,9 +44,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('WelcomeCtrl', function($scope, $state) {
+  $scope.userdata = HARDCODEDUSER;
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
+  console.log($scope.userdata)
+
 })
 
 .controller('UserCtrl', function($scope, $state, userFactory) {
