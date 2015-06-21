@@ -86,7 +86,7 @@ while 1:
 
     puttofile(nt,nc)
 
-    #nt=get5Creatures()
+    nt=get5Creatures()
 
     while time.time() < nc:
         sys.stdout.write("\rNext quests in: "+ str(int((nc-time.time())//3600)) +"h "+ str(int(((nc-time.time())//60)%60)) +"m "+ str(int((nc-time.time())%60)) +"s            ")
