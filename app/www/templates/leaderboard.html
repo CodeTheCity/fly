@@ -1,8 +1,10 @@
 <ion-view view-title="Leader board">
   <ion-content>
-    <h1>Leader board</h1>
-     <button ng-click="redirect('trophyroom')" class="button button-calm" ><!-- Trophyroom --></button>
-		<button ng-click="redirect('welcome')" class="button button-calm" >Back</button>
-    <!-- <button ng-click="redirect('challenges')" class="button button-calm" >Challenges</button> -->
+    <ion-list ng-repeat="user in users">
+    	
+    	<ion-item ng-click="redirectToUserPage(user.id)">
+     	{{$index+1}} {{user.name}} {{user.points}}
+     	</ion-item>
+     </ion-list>
   </ion-content>
 </ion-view>

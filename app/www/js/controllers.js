@@ -8,7 +8,6 @@ angular.module('starter.controllers', [])
   });
   var callback = function(a) {
     console.log(a);
-    console.log('-------------------')
   };
   $scope.userdata = {};
   $scope.loginViaFB = function login() {
@@ -37,7 +36,6 @@ angular.module('starter.controllers', [])
         scope: 'email'
       });
   }
-
 })
 
 .controller('WelcomeCtrl', function($scope, $state) {
@@ -46,10 +44,28 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LeaderboardCtrl', function($scope, $state) {
+.controller('UserCtrl', function($scope, $state, userFactory) {
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
+  
+  $scope.userID = $state.params.id;
+  $scope.userdata = userFactory.getUSerByID($scope.userID );
+
+})
+
+.controller('LeaderboardCtrl', function($scope, $state, userFactory) {
+  
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+  
+  $scope.users = userFactory.getAllUSers();
+  
+  $scope.redirectToUserPage= function(id) {
+    $state.go('app.user',{id:id});
+  };
+
 })
 
 
@@ -65,17 +81,19 @@ angular.module('starter.controllers', [])
   };
 
   var map = new ol.Map({
-        target: 'map',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.MapQuest({layer: 'osm'})
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.transform([-3.1889, 55.9531], 'EPSG:4326', 'EPSG:3857'),
-          zoom: 15
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.MapQuest({
+          layer: 'osm'
         })
-      });
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.transform([-3.1889, 55.9531], 'EPSG:4326', 'EPSG:3857'),
+      zoom: 15
+    })
+  });
 })
 
 

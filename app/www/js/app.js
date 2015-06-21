@@ -65,6 +65,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+
+  .state('app.user', {
+    url: "/user/:id",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/user.html",
+        controller: 'UserCtrl'
+      }
+    }
+  })
+
   .state('app.questroom', {
     url: "/questroom",
     abstract: false,
