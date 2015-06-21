@@ -29,8 +29,11 @@ angular.module('starter.controllers', [])
               var src = 'http://graph.facebook.com/' + data.id + '/picture?type=large';
               $scope.userdata = data;
               $scope.userdata.src = src;
-              final.src = src;
-              HARDCODEDUSER = final;
+              
+              HARDCODEDUSER.src = src;
+              
+              console.log(HARDCODEDUSER)
+              
               $state.go('app.welcome')
             },
             error: function(e) {
@@ -207,9 +210,10 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
-  console.log(HARDCODEDUSER)
-  $scope.image = HARDCODEDUSER.src;
-  $scope.username = HARDCODEDUSER.first_name;
+
+  
+  $scope.userdata = HARDCODEDUSER;
+  
   $scope.timer = 1;
   $scope.isDisabled = true;
   var interval = $interval(function() {
