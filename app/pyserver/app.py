@@ -10,8 +10,9 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 """
-api = Api(app)
 app = Flask(__name__)
+api = Api(app)
+
 
 
 #cj = None
