@@ -16,9 +16,43 @@ def get5Creatures():
     
     for i in xrange(5):
         cc = c["records"][random.randint(0,len(c["records"])-1)]
-        c5[i] = {"name":cc["Common name"],"latin":cc["Scientific name"],"type":cc["Group"]}
-        dt[c5[i]["name"]]=0
+        c5[i] = {"name":cc["Common name"],"latin":" ".join(cc["Scientific name"].split()),"type":cc["Group"],"desc":"","img":""}
+        gbif = json.loads(urllib.urlopen("http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1").read())
+        #print "http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1"
         
+        
+        #print i
+        if len(gbif["results"])==1:
+            gbif_id=str(gbif["results"][0]["key"])
+            #print c5[i]["latin"]
+            #print i
+            #print gbif_id
+            gbif_desc = json.loads(urllib.urlopen("http://api.gbif.org/v1/species/"+gbif_id+"/descriptions").read())
+            for desc in gbif_desc["results"]:
+                if "language" in desc.keys() and "description" in desc.keys() and desc["language"]=="eng":
+                    c5[i]["desc"]=desc["description"]
+                    break
+        
+        
+        
+        
+        
+        
+        eol_s = json.loads(urllib.urlopen("http://eol.org/api/search/"+c5[i]["latin"]+".json").read())
+        if eol_s["totalResults"]>0:
+            eol_id = str(eol_s["results"][0]["id"])
+            eol_p = json.loads(urllib.urlopen("http://eol.org/api/pages.json?id="+eol_id+"&text=0&videos=0").read())
+            #print eol_p
+            if len(eol_p["dataObjects"]) > 0 and "mediaURL" in eol_p["dataObjects"][0].keys():
+                c5[i]["img"] = eol_p["dataObjects"][0]["mediaURL"]
+                
+        
+        
+        
+        
+        
+        
+        dt[c5[i]["name"]]=0
     #print len(dt)
     #return c5
     if len(dt) == 5:
@@ -52,10 +86,11 @@ while 1:
 
     puttofile(nt,nc)
 
-    nt=get5Creatures()
+    #nt=get5Creatures()
 
     while time.time() < nc:
         sys.stdout.write("\rNext quests in: "+ str(int((nc-time.time())//3600)) +"h "+ str(int(((nc-time.time())//60)%60)) +"m "+ str(int((nc-time.time())%60)) +"s            ")
+        #pass
 
     
 
