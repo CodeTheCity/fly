@@ -2,10 +2,38 @@
   <h2 class="title">Pick a Quest!</h2>
 </div>
 <ion-view view-title="Quest room" >
-  <ion-content class="has-subheader">
-	<div class="list">
+  <ion-content class="has-subheader grass">
+	<div class="list" ng-repeat="item in qwop">
+	<!-- <ul class="list"> -->
+    <!-- <li class="item"> -->
+    	<div class="card" style="margin-top:2px; margin-bottom:2px;">
+			  <div class="item item-divider">
+			    <b> Name </b> {{item["Common name"]}}
+			  </div>
+			  <div class="item item-text-wrap">
+			    <!-- <b> Name </b> {{item}}<br/> -->
+			    <b> Type </b> {{item["Group"]}} <br/>
+			    <b> Scientific Name </b> {{item["Scientific name"]}}
+			  </div>
+			  <div class="item item-divider">
 
-	    <a class="item item-thumbnail-left" href="#">
+<div style="text-align:center;">
+	<button class="button button-balanced">
+  	Quest for {{item["Common name"]}}
+	</button>
+		<button class="button button-calm">
+  	Info
+	</button>
+</div>
+
+
+			  </div>
+			</div>
+    <!-- </li> -->
+</ul>
+		
+
+	   <!--  <a class="item item-thumbnail-left" href="#">
 	      <img src="http://www.firstaidforfree.com/wp-content/uploads/2015/02/FISHSHAPED.png">
 	      <h2>Man eating Fish</h2>
 	      <p>Really Dangerous</p>
@@ -21,7 +49,7 @@
 	      <img src="http://i.ytimg.com/vi/p46A3HMuoCo/maxresdefault.jpg">
 	      <h2>Devil Bird</h2>
 	      <p>Can turn you to stone</p>
-	    </a>
+	    </a> -->
 
 	</div>
 

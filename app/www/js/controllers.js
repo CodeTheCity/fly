@@ -25,6 +25,7 @@ angular.module('starter.controllers', [])
 
               var final = JSON.stringify(data);
               var data = data;
+              // console.log('http://graph.facebook.com/' + data.id + '/picture?type=large')
               var src = 'http://graph.facebook.com/' + data.id + '/picture?type=large';
               $scope.userdata = data;
               $scope.userdata.src = src;
@@ -87,6 +88,71 @@ angular.module('starter.controllers', [])
   };
 })
 
+
+.controller('questroom', function($scope, $state,  $http) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  };
+
+  // $scope.data = $http({
+  //   method: 'GET',
+  //   dataType: 'jsonp',
+  //   url: 'http://codethecity-fly.herokuapp.com/quest/species/'
+    // params: data
+
+  // }).success(function(data, status) {
+    var data = [
+    {
+        "Common name": "Whorl-grass", 
+        "Group": "flowering plant", 
+        "International / UK status": "", 
+        "Lothian status": "VL", 
+        "Scientific name": "Catabrosa  aquatica", 
+        "Scottish status": "", 
+        "_id": 368
+    }, 
+    {
+        "Common name": "water beetle", 
+        "Group": "insect - beetle (Coleoptera)", 
+        "International / UK status": "NB", 
+        "Lothian status": "", 
+        "Scientific name": "Hydroporus  ferrugineus", 
+        "Scottish status": "", 
+        "_id": 143
+    }, 
+    {
+        "Common name": "Exile", 
+        "Group": "insect - moth", 
+        "International / UK status": "", 
+        "Lothian status": "VL", 
+        "Scientific name": "Apamea zeta subsp. marmorata", 
+        "Scottish status": "", 
+        "_id": 195
+    }, 
+    {
+        "Common name": "Common Kingfisher", 
+        "Group": "bird", 
+        "International / UK status": "BCA W1", 
+        "Lothian status": "", 
+        "Scientific name": "Alcedo atthis", 
+        "Scottish status": "SBL", 
+        "_id": 23
+    }, 
+    {
+        "Common name": "Betony", 
+        "Group": "flowering plant", 
+        "International / UK status": "", 
+        "Lothian status": "VL", 
+        "Scientific name": "Stachys officinalis", 
+        "Scottish status": "", 
+        "_id": 444
+    }
+]
+    $scope.qwop = data;
+  // });
+
+})
+
 .controller('MapCtrl', function($scope, $state) {
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
@@ -124,7 +190,7 @@ angular.module('starter.controllers', [])
   console.log(HARDCODEDUSER)
   $scope.image = HARDCODEDUSER.src;
   $scope.username = HARDCODEDUSER.first_name;
-  $scope.timer = 10;
+  $scope.timer = 1;
   $scope.isDisabled = true;
   var interval = $interval(function() {
     $scope.timer--;
