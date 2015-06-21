@@ -87,21 +87,28 @@ angular.module('starter.controllers', [])
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+    
+    epsg4326 =  new OpenLayers.Projection("EPSG:4326");
+    projectTo = map.getProjectionObject();
+   
+    var lonLat = new OpenLayers.LonLat( -3.1889, 55.9531 ).transform(epsg4326, projectTo);
+          
+    var zoom=16;
+    map.setCenter (lonLat, zoom);
 
-  var map = new ol.Map({
-    target: 'map',
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.MapQuest({
-          layer: 'osm'
-        })
-      })
-    ],
-    view: new ol.View({
-      center: ol.proj.transform([-3.1889, 55.9531], 'EPSG:4326', 'EPSG:3857'),
-      zoom: 15
-    })
-  });
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+
+    var feature = new OpenLayers.Feature.Vector(
+            new OpenLayers.Geometry.Point( -3.1889, 55.9531 ).transform(epsg4326, projectTo),
+            {description:'This is the value of<br>the description attribute'} ,
+            {externalGraphic: './img/marker.png', graphicHeight: 20, graphicWidth: 20, graphicXOffset:-10, graphicYOffset:-25  }
+        );
+ 
+    vectorLayer.addFeatures(feature);
+
+    map.addLayer(vectorLayer);
 })
 
 
