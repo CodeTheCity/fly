@@ -4,12 +4,12 @@ from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest, db
 import datetime
 
-"""
+
 from flask.ext.cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-"""
+
 
 try:
     from flask.ext.cors import CORS  # The typical way to import flask-cors
@@ -23,10 +23,10 @@ except ImportError:
 
 
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
 
-CORS(app, resources=r'/*', allow_headers='Content-Type')
+#CORS(app, allow_headers='Content-Type')
 api = Api(app)
 #cj = None
 
