@@ -106,7 +106,7 @@ def puttofile(cr,n):
 
 nt=get5Creatures()
 while 1:
-    nc = time.time()+300
+    nc = time.time()+3600*24
 
     puttofile(nt,nc)
 
