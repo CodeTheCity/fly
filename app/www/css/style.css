@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .grass{
-	background-image: url('img/grassTile01.jpg'); 
+	background-image: url('../img/startscreen.png');
+	/*background-image: url('img/grassTile01.jpg'); */
 	background-repeat: repeat-y;
 }
 
