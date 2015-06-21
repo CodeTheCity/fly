@@ -1,4 +1,4 @@
-import os, json, time
+import os, json, time, pymongo
 from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest, db
@@ -8,7 +8,20 @@ import datetime
 app = Flask(__name__)
 api = Api(app)
 
-cj = None
+#cj = None
+
+
+@app.route('/current_quest')
+def get_quest():
+    client = pymongo.MongoClient("mongodb://codethecity:edinburghapps@ds049570.mongolab.com:49570/fly")
+    db = client['fly']
+    return json.dumps(db.posts.find_one({"_id":1000000}))
+
+
+
+
+
+
 
 @app.route('/')
 def welcome():
