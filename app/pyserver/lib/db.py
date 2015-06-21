@@ -65,13 +65,11 @@ class Nature(Doc):
 class Quest(Doc):
     collection = 'quest'
     counter = 'quest'
-    pass
 
 
 class Find(Doc):
     collection = 'find'
     counter = 'find'
-         
 
 
 class User(Doc):

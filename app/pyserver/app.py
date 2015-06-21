@@ -1,7 +1,7 @@
 import os, json, time
 from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
-from lib.db import Doc, Nature, Find, User, Quest
+from lib.db import Doc, Nature, Find, User, Quest, db
 import datetime
 
 
@@ -109,7 +109,18 @@ class RecentFinds(Resource):
         f = Find()
 	return f.recent_n(10)
  
- 
+class MapFinds(Resource):
+    search_name_fields = ['Common name', 'Scientific name','test'] 
+
+    def get(self, name):
+        f = Find() 
+        finds = []
+        for name in self.search_name_fields:
+            found = list(db[f.collection].find({'name':name}))
+            for item in found:
+                finds.append(item)
+        return finds    
+
 class Scoreboard(Resource):
     """
     """
@@ -119,6 +130,7 @@ class Scoreboard(Resource):
 
 api.add_resource(Species, '/quest/species/')
 api.add_resource(UserFind, '/find/', '/find/<id>')
+api.add_resource(MapFinds, '/finds/map/<name>')
 api.add_resource(RecentFinds,'/finds/recent/')
 api.add_resource(UserDetails, '/user/', '/user/<id>')
 api.add_resource(Scoreboard, '/scoreboard/')
