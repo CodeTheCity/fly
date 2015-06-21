@@ -16,7 +16,18 @@ def get5Creatures():
     
     for i in ("0","1","2","3","4"):
         cc = c["records"][random.randint(0,len(c["records"])-1)]
-        c5[i] = {"name":cc["Common name"],"latin":" ".join(cc["Scientific name"].split()),"type":cc["Group"],"desc":"","img":"","id":cc["_id"]}
+        c5[i] = {"name":cc["Common name"],"latin":cc["Scientific name"],"type":cc["Group"],"desc":"","img":"","id":cc["_id"]}
+        fixedlatin=""
+        inbk = False
+        for letter in c5[i]["latin"]
+            if letter = "(":
+                inbk = True
+            elif letter = ")":
+                inbk = False
+            elif not inbk:
+                fixedlatin += letter
+        c5[i]["latin"]=" ".join(fixedlatin.split())
+        
         gbif = json.loads(urllib.urlopen("http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1").read())
         #print "http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1"
         
