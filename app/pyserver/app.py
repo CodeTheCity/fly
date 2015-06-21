@@ -1,16 +1,40 @@
-import os
+
+import os, json, time
 from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest
-import json
+
+
 
 app = Flask(__name__)
 api = Api(app)
 
+cj = None
 
 @app.route('/')
 def welcome():
     return render_template('welcome.html') 
+
+@app.route('/species')
+def species():
+    global cj
+    if cj == None or int(cj["time"])/1000. < time.time():
+        jf = open("dat.json",'r')
+        cj = json.load(jf)
+        jf.close()
+        
+    return json.dumps(cj["species"])
+    
+@app.route('/time')
+def getTime():
+    global cj
+    if cj == None or int(cj["time"])/1000. < time.time():
+        jf = open("dat.json",'r')
+        cj = json.load(jf)
+        jf.close()
+    
+    return str(cj["time"])
+
 
 
 class QuestList(Resource):
