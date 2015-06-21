@@ -83,8 +83,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
     abstract: false,
     views: {
       'menuContent': {
-        templateUrl: "templates/questroom.html"
-        // controller: 'LeaderboardCtrl'
+        templateUrl: "templates/questroom.html",
+        controller: 'questroom'
       }
     }
   })
