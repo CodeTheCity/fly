@@ -133,15 +133,16 @@ class RecentFinds(Resource):
 	return f.recent_n(10)
  
 class MapFinds(Resource):
-    search_name_fields = ['Common name', 'Scientific name','test'] 
-
     def get(self, name):
+                
         f = Find() 
         finds = []
-        for name in self.search_name_fields:
-            found = list(db[f.collection].find({'name':name}))
-            for item in found:
-                finds.append(item)
+        if(name=="all"):
+            found = list(db[f.collection].find({'species':"all"}))
+        else:
+            found = list(db[f.collection].find({'SpecieType': name}))
+        for item in found:
+            finds.append(item)
         return finds    
 
 class Scoreboard(Resource):
