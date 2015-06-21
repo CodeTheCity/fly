@@ -2,6 +2,7 @@ import os, json, time
 from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest
+import datetime
 
 
 app = Flask(__name__)
@@ -15,14 +16,11 @@ def welcome():
 
     
 @app.route('/api/time')
-def getTime():
-    global cj
-    if cj == None or int(cj["time"])/1000. < time.time():
-        jf = open("dat.json",'r')
-        cj = json.load(jf)
-        jf.close()
-    
-    return str(cj["time"])
+def get_next_quest_time():
+    q = Quest()
+    latest = q.pick_one()
+    started = latest['start_time']
+    return json.dumps('{"started":'+str(started)+'}') 
 
 
 class Species(Resource):
@@ -75,6 +73,22 @@ class CurrentQuest(StorableResource):
     def post(self):
         pass
 
+class NewQuest(Resource):
+
+    def post(self):
+        doc = {}
+        q = Quest()
+        n = Nature()
+        items = n.pick_five()
+       
+        doc['start_time'] = time.time()
+        doc['items'] = items
+        doc['_id'] = q.get_next_in_sequence()
+        
+        q.insert(json.dumps(doc))
+
+        return {"success":doc['_id']}, 200
+        
 class UserFind(StorableResource):
     """
     POST a new find or GET a recorded one
@@ -109,6 +123,7 @@ api.add_resource(RecentFinds,'/finds/recent/')
 api.add_resource(UserDetails, '/user/', '/user/<id>')
 api.add_resource(Scoreboard, '/scoreboard/')
 api.add_resource(CurrentQuest, '/quest/')
+api.add_resource(NewQuest, '/quest/new/')
 
 
 if __name__ == '__main__':

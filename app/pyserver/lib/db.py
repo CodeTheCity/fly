@@ -63,6 +63,8 @@ class Nature(Doc):
 
 
 class Quest(Doc):
+    collection = 'quest'
+    counter = 'quest'
     pass
 
 
