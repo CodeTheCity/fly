@@ -24,10 +24,10 @@ except ImportError:
 
 
 app = Flask(__name__)
-api = Api(app)
+
 
 CORS(app, resources=r'/*', allow_headers='Content-Type')
-
+api = Api(app)
 #cj = None
 
 
