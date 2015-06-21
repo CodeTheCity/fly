@@ -1,4 +1,4 @@
-import urllib, json, time, random, sys
+import urllib, json, time, random, sys, pymongo
 
 
 def get5Creatures():
@@ -14,7 +14,7 @@ def get5Creatures():
     
     dt = {}
     
-    for i in xrange(5):
+    for i in ("0","1","2","3","4"):
         cc = c["records"][random.randint(0,len(c["records"])-1)]
         c5[i] = {"name":cc["Common name"],"latin":" ".join(cc["Scientific name"].split()),"type":cc["Group"],"desc":"","img":""}
         gbif = json.loads(urllib.urlopen("http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1").read())
@@ -76,9 +76,14 @@ def getTypes():
     
 
 def puttofile(cr,n):
-    f=open("dat.json","w")
-    json.dump({"species":cr,"time":int(n*1000)},f)
-    f.close()
+    #f=open("dat.json","w")
+    j={"species":cr,"time":int(n*1000),"_id":1000000}
+    client = pymongo.MongoClient("mongodb://codethecity:edinburghapps@ds049570.mongolab.com:49570/fly")
+    db = client["fly"]
+    db.posts.remove({"_id":1000000})
+    i=db.posts.insert_one(j).inserted_id
+    print i
+    #f.close()
 
 nt=get5Creatures()
 while 1:
