@@ -106,7 +106,9 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
-
+  console.log(HARDCODEDUSER)
+  $scope.image = HARDCODEDUSER.src;
+  $scope.username = HARDCODEDUSER.first_name;
   $scope.timer = 10;
   $scope.isDisabled = true;
   var interval = $interval(function() {
@@ -115,9 +117,6 @@ angular.module('starter.controllers', [])
       $interval.cancel(interval);
       $scope.isDisabled = false;
     }
-
-
-
   }, 1000);
 
   $scope.redirect = function(uri) {
