@@ -14,14 +14,17 @@
     <h2>API</h2>
    
     <p><em>GET /time </em> - UNIX time of the next quest start</p> 
-    <p><em>GET /quest/species/</em> - list of five notable natural things</p>
+    <p><em>GET /quest/species/</em> - list of five notable natural things, at random</p>
 
     <p><em>POST /find/</em> - send a JSON document representing a find.</p>
 
     <p><em>GET /finds/recent</em> - look at recent finds</p>
 
-    <p><em>POST /user/</em> - send a JSON document representing a user</p>
+    <p><em>POST /user/</em> - send a JSON document representing a user
+    <br/><tt>curl -d 'data={"test":1}' http://hostname/url/</tt>
+   </p>
 
-    <p><em>GET /quest/ </em> - not implemented - get the latest quest</p>
+    <p><em>GET /quest/ </em> - get the latest quest</p>
+    <p><em>POST /quest/new/ </em> - generate a new quest</p>
     </body>
 </html>
