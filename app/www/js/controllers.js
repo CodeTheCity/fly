@@ -44,7 +44,9 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('WelcomeCtrl', function($scope, $state) {
+.controller('WelcomeCtrl', function($scope, $state, $timeout) {
+  $scope.initial = true; 
+  
   $scope.userdata = HARDCODEDUSER;
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
@@ -96,25 +98,31 @@ angular.module('starter.controllers', [])
    
     var lonLat = new OpenLayers.LonLat( -3.1889, 55.9531 ).transform(epsg4326, projectTo);
           
-    var zoom=16;
+    var zoom=13;
     map.setCenter (lonLat, zoom);
 
     var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
 
-    var feature = new OpenLayers.Feature.Vector(
-            new OpenLayers.Geometry.Point( -3.1889, 55.9531 ).transform(epsg4326, projectTo),
+    var points = [-3.2, 55.9531, -3.1889, 55.96, -3.19, 55.95];
+    var imagesNames = ["fl1.png", "fl2.png", "fl3.png"];
+    
+    for (i = 0; i < 3; i++) {
+       vectorLayer.addFeatures(new OpenLayers.Feature.Vector(
+            new OpenLayers.Geometry.Point( points[2*i], points[2*i+1] ).transform(epsg4326, projectTo),
             {description:'This is the value of<br>the description attribute'} ,
-            {externalGraphic: './img/marker.png', graphicHeight: 20, graphicWidth: 20, graphicXOffset:-10, graphicYOffset:-25  }
-        );
- 
-    vectorLayer.addFeatures(feature);
+            {externalGraphic: './img/'+imagesNames[i], graphicHeight: 20, graphicWidth: 20, graphicXOffset:-10, graphicYOffset:-10  }
+        )
+       );
+    }
 
     map.addLayer(vectorLayer);
 })
 
 
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
-
+  console.log(HARDCODEDUSER)
+  $scope.image = HARDCODEDUSER.src;
+  $scope.username = HARDCODEDUSER.first_name;
   $scope.timer = 10;
   $scope.isDisabled = true;
   var interval = $interval(function() {
@@ -123,9 +131,6 @@ angular.module('starter.controllers', [])
       $interval.cancel(interval);
       $scope.isDisabled = false;
     }
-
-
-
   }, 1000);
 
   $scope.redirect = function(uri) {
