@@ -163,7 +163,7 @@ angular.module('starter.controllers', [])
     epsg4326 =  new OpenLayers.Projection("EPSG:4326");
     projectTo = map.getProjectionObject();
    
-    var lonLat = new OpenLayers.LonLat( -3.1889, 55.9531 ).transform(epsg4326, projectTo);
+    var lonLat = new OpenLayers.LonLat( -3.24, 55.9331 ).transform(epsg4326, projectTo);
           
     var zoom=13;
     map.setCenter (lonLat, zoom);
