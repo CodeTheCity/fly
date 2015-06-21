@@ -8,15 +8,47 @@
 #test{
 	color:red !important;
 }
+.gradientBG{
+	background: #d2ff52; /* Old browsers */
+	background: -moz-linear-gradient(top,  #d2ff52 0%, #9bc479 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2ff52), color-stop(100%,#9bc479)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #d2ff52 0%,#9bc479 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #d2ff52 0%,#9bc479 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #d2ff52 0%,#9bc479 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #d2ff52 0%,#9bc479 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#9bc479',GradientType=0 ); /* IE6-9 */
 
+}
+.gradientBG .list ion-item ,
+.gradientBG .list ion-item a{
+	background: transparent
+}
 .welcomeButtons {
-
+		position: relative;
+		top: 300px;
+		background: transparent;
+    -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
     animation-name: example;
-    animation-duration: 4s;
+    /*-webkit-animation-delay: 1s;
+    animation-delay: 1s;*/
+    animation-duration: 2s;
 
 
-@keyframes example {
-    0%   {background-color: red;}
-    25%  {background-color: yellow;}
-    50%  {background-color: blue;}
-    100% {background-color: green;}
+}
+.welcomeButtons div{
+	background: transparent;
+}
+@-webkit-keyframes example {
+    from {
+    	-ms-transform: translate(0,300px); /* IE 9 */
+   		-webkit-transform: translate(0,300px); /* Safari */
+    	transform: translate(0,300px);
+    }
+    to {
+			-ms-transform: translate(0,0); /* IE 9 */
+   		-webkit-transform: translate(0,0); /* Safari */
+    	transform: translate(0,0);
+    
+
+    }
