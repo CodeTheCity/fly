@@ -3,6 +3,15 @@
 	font-family: 'vivaldii';
 	src: url('Vivaldii.ttf') format('truetype');
 }
+.tile{
+	background: url('../img/background-tile.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	border: transparent solid 50px;
+	background-position: center;
+}
+
 .menu_logo{
 	height: 300px;
 	width: 100%;
