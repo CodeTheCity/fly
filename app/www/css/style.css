@@ -4,14 +4,14 @@
 	src: url('Vivaldii.ttf') format('truetype');
 }
 .tile{
-	background: url('../img/background-tile.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	box-sizing: border-box;
-	border: transparent solid 50px;
-	background-position: center;
-}
+	background: url('../img/page-tile.png');
+	background-size: cover;
 
+}
+.challenges_card,
+.challenges_card div{
+	background: transparent
+}
 .menu_logo{
 	height: 300px;
 	width: 100%;
@@ -54,6 +54,7 @@
 	width: 228px;
 	display: block;
 	margin: 0 auto;
+	box-shadow: 5px 5px 10px;
 	
 };
 #test{
