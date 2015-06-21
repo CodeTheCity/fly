@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
   $scope.dpsoa = 'dsadsa';
 })
 
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope, $state) {
   openFB.init({
     appId: '786735534689395'
   });
@@ -30,6 +30,7 @@ angular.module('starter.controllers', [])
               $scope.userdata.src = src;
               final.src = src;
               HARDCODEDUSER = final;
+              $state.go('app.welcome')
             },
             error: function(e) {
               console.log(e)

@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+@font-face{ 
+	font-family: 'vivaldii';
+	src: url('Vivaldii.ttf') format('truetype');
+}
 .grass{
 	background-image: url('../img/startscreen.png');
 	/*background-image: url('img/grassTile01.jpg'); */
@@ -9,6 +13,7 @@
 	color:red !important;
 }
 .gradientBG{
+	
 	background: #d2ff52; /* Old browsers */
 	background: -moz-linear-gradient(top,  #d2ff52 0%, #9bc479 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2ff52), color-stop(100%,#9bc479)); /* Chrome,Safari4+ */
@@ -19,11 +24,19 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#9bc479',GradientType=0 ); /* IE6-9 */
 
 }
+.gradientBG .list ion-item{
+	border-bottom: 1px solid black;
+}
 .gradientBG .list ion-item ,
 .gradientBG .list ion-item a{
-	background: transparent
+	background: transparent;
+	font-family: vivaldii;
+	font-size: 36px;
 }
 .welcomeButtons {
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
 		position: relative;
 		top: 300px;
 		background: transparent;
