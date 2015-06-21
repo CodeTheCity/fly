@@ -7,6 +7,7 @@ import datetime
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
 
 #cj = None
 
