@@ -77,7 +77,7 @@ def get5Creatures():
     if len(dt) == 5:
         return c5
     else:
-        print "DUPLICATES"
+        #print "DUPLICATES"
         return get5Creatures()
     
 def getTypes():

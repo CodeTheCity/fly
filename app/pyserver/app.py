@@ -32,7 +32,7 @@ api = Api(app)
 
 
 @app.route('/current_quest')
-#@cross_origin()
+@cross_origin()
 def get_quest():
     client = pymongo.MongoClient("mongodb://codethecity:edinburghapps@ds049570.mongolab.com:49570/fly")
     db = client['fly']
@@ -45,13 +45,13 @@ def get_quest():
 
 
 @app.route('/')
-#@cross_origin()
+@cross_origin()
 def welcome():
     return render_template('welcome.html') 
 
     
 @app.route('/api/time')
-#@cross_origin()
+@cross_origin()
 def get_next_quest_time():
     q = Quest()
     latest = q.pick_one()
