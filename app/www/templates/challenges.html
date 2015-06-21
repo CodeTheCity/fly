@@ -3,12 +3,12 @@
 </div> -->
 <ion-view view-title="Challenges">
 
-    <ion-content style="background-image: url('img/grassTile01.jpg'); background-repeat: repeat-y;" class="grass">
+    <ion-content class="tile">
     <div class="bar bar-header bar-royal">
   		<h1 class="title">Are You Ready?</h1>
 		</div>
 		<br/>
-		<br/>
+		<br/>Remove
     <!-- <button ng-click="redirect('trophyroom')" class="button button-calm" >Trophyroom</button> -->
 		<!-- <button ng-click="redirect('welcome')" class="button button-calm" >Back</button> -->
     <!-- <button ng-click="redirect('leaderboard')" class="button button-calm" >Leaderboard</button> -->
@@ -25,27 +25,23 @@
 
 		<div class="card">
 		<div class="row">
-		  <div class="col col-top"><img src="{{image}}"></div>
+		  <div class="col col-top"><img src="{{userdata.src}}"></div>
 		  <div class="col col-center">
 		 
 		  	
 		  </div>
-		  <div class="col col-bottom"> Are you ready for a challenge {{username}}?</div>
+		  <div class="col col-bottom"> Are you ready for a challenge {{userdata.first_name}}?</div>
 		</div>
 	</div>
 
-	<div class="card">
 
 
-		<div class="row">
-		  <div class="col col-top"></div>
-		  <div class="col col-center">
-		  	<button ng-click="redirect('questroom')" ng-disabled="isDisabled" class="button button-balanced">  
-	  			Get Quest
+
+		
+		  
+		  	<button ng-click="redirect('questroom')" ng-disabled="isDisabled" class="button getQuestButton">  
 				</button>
-		  </div>
-		  <div class="col col-bottom"></div>
-		</div>
+
 
 
 	</div>

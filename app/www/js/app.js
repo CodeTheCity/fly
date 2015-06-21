@@ -127,6 +127,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function() {
     console.log('other')
-    return '/app/welcome'
+    return '/login'
   });
 });

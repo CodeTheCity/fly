@@ -3,12 +3,59 @@
 	font-family: 'vivaldii';
 	src: url('Vivaldii.ttf') format('truetype');
 }
+.tile{
+	background: url('../img/background-tile.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	border: transparent solid 50px;
+	background-position: center;
+}
+
+.menu_logo{
+	height: 300px;
+	width: 100%;
+	position: absolute;
+	bottom: 10px;
+	border: transparent solid 50px;
+}
+.welcome_logo{
+	height: 300px;
+	width: 100%;
+	position: absolute;
+	bottom: 10px;
+	border: transparent solid 0px;	
+
+}
+.fly_logo2{
+	background: url('../img/kingfisher.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	border: transparent solid 50px;
+	background-position: center;
+}
+.fly_logo{
+	background: url('../img/kingfisher_notext.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+
+}
 .grass{
 	background-image: url('../img/startscreen.png');
 	/*background-image: url('img/grassTile01.jpg'); */
 	background-repeat: repeat-y;
 }
-
+.getQuestButton{
+	background-color: green ;
+	background-image: url('../img/button228x85.png'); ;
+	height: 85px;
+	width: 228px;
+	display: block;
+	margin: 0 auto;
+	
+};
 #test{
 	color:red !important;
 }
@@ -33,6 +80,10 @@
 	font-family: vivaldii;
 	font-size: 36px;
 }
+.welcomeButtons.login {
+	  animation-duration: 2s !important;
+	   -webkit-animation-duration:2s !important;
+}
 .welcomeButtons {
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;
@@ -41,11 +92,11 @@
 		top: 300px;
 		background: transparent;
     -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration:1s; /* Chrome, Safari, Opera */
     animation-name: example;
     /*-webkit-animation-delay: 1s;
     animation-delay: 1s;*/
-    animation-duration: 2s;
+    animation-duration: 1s;
 
 
 }

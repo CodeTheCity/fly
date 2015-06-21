@@ -1,4 +1,4 @@
-var HARDCODEDUSER = {"id":"1409029225","birthday":"02/28/1983","email":"mrnz@wp.pl","first_name":"Przemek","gender":"male","last_name":"Marciniak","link":"http://www.facebook.com/1409029225","locale":"en_US","name":"Przemek Marciniak","timezone":1,"updated_time":"2015-01-05T22:47:38+0000","verified":true,"src":"http://graph.facebook.com/1409029225/picture?type=large"};
+var HARDCODEDUSER = {};//{"id":"1409029225","birthday":"02/28/1983","email":"mrnz@wp.pl","first_name":"Przemek","gender":"male","last_name":"Marciniak","link":"http://www.facebook.com/1409029225","locale":"en_US","name":"Przemek Marciniak","timezone":1,"updated_time":"2015-01-05T22:47:38+0000","verified":true,"src":"http://graph.facebook.com/1409029225/picture?type=large"};
 
 angular.module('starter.controllers', [])
 
@@ -29,8 +29,11 @@ angular.module('starter.controllers', [])
               var src = 'http://graph.facebook.com/' + data.id + '/picture?type=large';
               $scope.userdata = data;
               $scope.userdata.src = src;
-              final.src = src;
-              HARDCODEDUSER = final;
+              HARDCODEDUSER = $scope.userdata;
+              //HARDCODEDUSER.src = src;
+              
+              console.log(HARDCODEDUSER)
+              
               $state.go('app.welcome')
             },
             error: function(e) {
@@ -163,7 +166,7 @@ angular.module('starter.controllers', [])
     epsg4326 =  new OpenLayers.Projection("EPSG:4326");
     projectTo = map.getProjectionObject();
    
-    var lonLat = new OpenLayers.LonLat( -3.1889, 55.9531 ).transform(epsg4326, projectTo);
+    var lonLat = new OpenLayers.LonLat( -3.24, 55.9331 ).transform(epsg4326, projectTo);
           
     var zoom=13;
     map.setCenter (lonLat, zoom);
@@ -207,9 +210,10 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChallengesCtrl', function($scope, $state, $http, $interval) {
-  console.log(HARDCODEDUSER)
-  $scope.image = HARDCODEDUSER.src;
-  $scope.username = HARDCODEDUSER.first_name;
+
+  
+  $scope.userdata = HARDCODEDUSER;
+  
   $scope.timer = 1;
   $scope.isDisabled = true;
   var interval = $interval(function() {

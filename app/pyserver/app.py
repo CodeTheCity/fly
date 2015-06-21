@@ -10,10 +10,23 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 """
+
+try:
+    from flask.ext.cors import CORS  # The typical way to import flask-cors
+except ImportError:
+    # Path hack allows examples to be run without installation.
+    import os
+    parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.sys.path.insert(0, parentdir)
+
+    from flask.ext.cors import CORS
+
+
+
 app = Flask(__name__)
 api = Api(app)
 
-
+CORS(app, resources=r'/*', allow_headers='Content-Type')
 
 #cj = None
 
@@ -133,15 +146,16 @@ class RecentFinds(Resource):
 	return f.recent_n(10)
  
 class MapFinds(Resource):
-    search_name_fields = ['Common name', 'Scientific name','test'] 
-
     def get(self, name):
+                
         f = Find() 
         finds = []
-        for name in self.search_name_fields:
-            found = list(db[f.collection].find({'name':name}))
-            for item in found:
-                finds.append(item)
+        if(name=="all"):
+            found = list(db[f.collection].find({'species':"all"}))
+        else:
+            found = list(db[f.collection].find({'SpecieType': name}))
+        for item in found:
+            finds.append(item)
         return finds    
 
 class Scoreboard(Resource):
