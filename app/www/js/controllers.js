@@ -170,14 +170,34 @@ angular.module('starter.controllers', [])
 
     var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
 
-    var points = [-3.2, 55.9531, -3.1889, 55.96, -3.19, 55.95];
-    var imagesNames = ["fl1.png", "fl2.png", "fl3.png"];
+    var points = [-3.2781,55.9257,
+-3.2335,55.9507,
+-3.2151,55.9221,
+-3.2554,55.9188,
+-3.2400,55.9408,
+-3.2880,55.9169,
+-3.2698,55.9291,
+-3.2181,55.9465,
+-3.2340,55.9114,
+-3.2143,55.9355,
+-3.2233,55.9233,
+-3.2584,55.9156,
+-3.2411,55.9390,
+-3.2586,55.9490,
+-3.2843,55.9355,
+-3.2224,55.9222,
+-3.2255,55.9183,
+-3.2591,55.9130,
+-3.2367,55.9218,
+-3.2847,55.9418
+];
+    var imagesNames = ["flower.png", "frog.png", "oak.png", "fish.png", "lion.png"];
     
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 20; i++) {
        vectorLayer.addFeatures(new OpenLayers.Feature.Vector(
             new OpenLayers.Geometry.Point( points[2*i], points[2*i+1] ).transform(epsg4326, projectTo),
             {description:'This is the value of<br>the description attribute'} ,
-            {externalGraphic: './img/'+imagesNames[i], graphicHeight: 20, graphicWidth: 20, graphicXOffset:-10, graphicYOffset:-10  }
+            {externalGraphic: './img/'+imagesNames[i%5], graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-10  }
         )
        );
     }

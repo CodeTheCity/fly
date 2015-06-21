@@ -16,37 +16,45 @@ def get5Creatures():
     
     for i in ("0","1","2","3","4"):
         cc = c["records"][random.randint(0,len(c["records"])-1)]
-        c5[i] = {"name":cc["Common name"],"latin":" ".join(cc["Scientific name"].split()),"type":cc["Group"],"desc":"","img":""}
+        c5[i] = {"name":cc["Common name"],"latin":" ".join(cc["Scientific name"].split()),"type":cc["Group"],"desc":"","img":"","id":cc["_id"]}
         gbif = json.loads(urllib.urlopen("http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1").read())
         #print "http://api.gbif.org/v1/species?name="+c5[i]["latin"].replace(" ","%20")+"&limit=1"
         
         
         #print i
-        if len(gbif["results"])==1:
-            gbif_id=str(gbif["results"][0]["key"])
-            #print c5[i]["latin"]
-            #print i
-            #print gbif_id
-            gbif_desc = json.loads(urllib.urlopen("http://api.gbif.org/v1/species/"+gbif_id+"/descriptions").read())
-            for desc in gbif_desc["results"]:
-                if "language" in desc.keys() and "description" in desc.keys() and desc["language"]=="eng":
-                    c5[i]["desc"]=desc["description"]
-                    break
+        try:
+            if len(gbif["results"])==1:
+                gbif_id=str(gbif["results"][0]["key"])
+                #print c5[i]["latin"]
+                #print i
+                #print gbif_id
+                gbif_desc = json.loads(urllib.urlopen("http://api.gbif.org/v1/species/"+gbif_id+"/descriptions").read())
+                for desc in gbif_desc["results"]:
+                    if "language" in desc.keys() and "description" in desc.keys() and desc["language"]=="eng":
+                        c5[i]["desc"]=desc["description"]
+                        break
+        except:
+            pass
         
         
         
+        """
+        try:
+            eol_s = json.loads(urllib.urlopen("http://eol.org/api/search/"+c5[i]["latin"]+".json").read())
+            if eol_s["totalResults"]>0:
+                eol_id = str(eol_s["results"][0]["id"])
+                eol_p = json.loads(urllib.urlopen("http://eol.org/api/pages.json?id="+eol_id+"&text=0&videos=0").read())
+                #print eol_p
+                if len(eol_p["dataObjects"]) > 0 and "mediaURL" in eol_p["dataObjects"][0].keys():
+                    c5[i]["img"] = eol_p["dataObjects"][0]["mediaURL"]
+        except:
+            pass        
+        """
         
-        
-        
-        eol_s = json.loads(urllib.urlopen("http://eol.org/api/search/"+c5[i]["latin"]+".json").read())
-        if eol_s["totalResults"]>0:
-            eol_id = str(eol_s["results"][0]["id"])
-            eol_p = json.loads(urllib.urlopen("http://eol.org/api/pages.json?id="+eol_id+"&text=0&videos=0").read())
-            #print eol_p
-            if len(eol_p["dataObjects"]) > 0 and "mediaURL" in eol_p["dataObjects"][0].keys():
-                c5[i]["img"] = eol_p["dataObjects"][0]["mediaURL"]
-                
-        
+        try:
+            c5[i]["img"]=json.loads(urllib.urlopen("http://api.pixplorer.co.uk/getimage/"+c5[i]["latin"]).read())["imglink"]
+        except:
+            pass
         
         
         
@@ -82,7 +90,7 @@ def puttofile(cr,n):
     db = client["fly"]
     db.posts.remove({"_id":1000000})
     i=db.posts.insert_one(j).inserted_id
-    print i
+    #print i
     #f.close()
 
 nt=get5Creatures()
