@@ -1,9 +1,21 @@
-<ion-view view-title="Welcome">
-  <ion-content>
-    <h1>Welcome</h1>
-    	<button ng-click="redirect('trophyroom')" class="button button-calm" >Trophyroom</button>
-    	<button ng-click="redirect('challenges')" class="button button-calm" >Challenges</button>
-    	<button ng-click="redirect('leaderboard')" class="button button-calm" >Leaderboard</button>
+<ion-view view-title="Kingfisher">
+  <ion-content  style="background-image: url('img/grassTile01.jpg'); background-repeat: repeat-y;">
+  <br/>
+  <div class="bar bar-header bar-balanced">
+  	<h1 class="title">Welcome</h1>
+	</div>
+    <br/>
+    <br/>
+    <br/>
+
+	 <div class="card">
+	  <div class="item item-text-wrap">
+    	<button ng-click="redirect('challenges')" class="button button-royal button-full" >Challenges</button>
+    	<button ng-click="redirect('leaderboard')" class="button button-calm button-full" >Leaderboard</button>
+	    <button ng-click="redirect('trophyroom')" class="button button-energized button button-full" >Trophyroom</button>
+	  </div>
+	</div>
+    	
 	<button ng-click="redirect('map')" class="button button-calm" >Map</button>
   </ion-content>
 </ion-view>
