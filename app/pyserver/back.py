@@ -77,7 +77,7 @@ def get5Creatures():
     if len(dt) == 5:
         return c5
     else:
-        print "DUPLICATES"
+        #print "DUPLICATES"
         return get5Creatures()
     
 def getTypes():
@@ -106,7 +106,7 @@ def puttofile(cr,n):
 
 nt=get5Creatures()
 while 1:
-    nc = time.time()+300
+    nc = time.time()+3600*24
 
     puttofile(nt,nc)
 

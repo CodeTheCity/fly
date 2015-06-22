@@ -3,3 +3,4 @@ flask-restful
 flask-login
 pymongo
 ext
+cross_origin
