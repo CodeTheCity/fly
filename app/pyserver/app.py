@@ -36,7 +36,10 @@ api = Api(app)
 def get_quest():
     client = pymongo.MongoClient("mongodb://codethecity:edinburghapps@ds049570.mongolab.com:49570/fly")
     db = client['fly']
-    return json.dumps(db.posts.find_one({"_id":1000000}))
+    q = None
+    while q == None:
+        q = json.dumps(db.posts.find_one({"_id":1000000}))
+    return q
 
 
 
