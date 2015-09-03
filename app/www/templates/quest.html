@@ -3,23 +3,15 @@
 </div>
 <ion-view view-title="Quest room" >
   <ion-content class="has-subheader tile">
-	<div class="list" ng-repeat="item in qwop">
 	<!-- <ul class="list"> -->
     <!-- <li class="item"> -->
     	<div class="card" style="margin-top:2px; margin-bottom:2px; opacity:0.6;">
-			  <div class="item item-divider">
-			    <b> Name </b> {{item["Common name"]}}
-			  </div>
-			  <div class="item item-text-wrap">
-			    <!-- <b> Name </b> {{item}}<br/> -->
-			    <b> Type </b> {{item["Group"]}} <br/>
-			    <b> Scientific Name </b> {{item["Scientific name"]}}
-			  </div>
+
 			  <div class="item item-divider">
 
 					<div style="text-align:center;">
-						<button class="button button-balanced" ng-click="redirect('quest')">
-					  	Quest for {{item["Common name"]}} 
+						<button class="button button-balanced" ng-click="picture()">
+					  	Take picture of {{item["Common name"]}} 
 						</button>
 						<!-- <button ng-click="redirect('challenges')" class="button button-royal button-full" >Challenges</button> -->
 							<button ng-click="redirect('map')" class="button button-calm ion-map">

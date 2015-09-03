@@ -8,9 +8,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $state) {
-  openFB.init({
-    appId: '786735534689395'
-  });
+  // openFB.init({
+  //   appId: '786735534689395'
+  // });
   var callback = function(a) {
     console.log(a);
   };
@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('WelcomeCtrl', function($scope, $state, $timeout) {
+.controller('WelcomeCtrl', function($scope, $state) {
   $scope.initial = true; 
   
   $scope.userdata = HARDCODEDUSER;
@@ -96,6 +96,7 @@ angular.module('starter.controllers', [])
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };
+
 
   // $scope.data = $http({
   //   method: 'GET',
@@ -156,7 +157,30 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('quest', function($scope, $state,  $http) {
+  $scope.redirect = function(uri) {
+    $state.go('app.' + uri);
+  }
+
+  $scope.picture = function() {
+    console.log('pic');
+
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.FILE_URI });
+
+    function onSuccess(imageURI) {
+         var image = document.getElementById('myImage');
+         image.src = imageURI;
+    }
+
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
+  }
+})
+
 .controller('MapCtrl', function($scope, $state) {
+  console.log('map');
   $scope.redirect = function(uri) {
     $state.go('app.' + uri);
   };

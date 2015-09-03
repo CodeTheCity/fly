@@ -41,18 +41,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
   })
 
 
-
-
-
-  .state('app.welcome', {
+  .state('welcome', {
     url: "/welcome",
     abstract: false,
-    views: {
-      'menuContent': {
-        templateUrl: "templates/welcome.html",
-        controller: 'WelcomeCtrl'
-      }
-    }
+    
+    templateUrl: "templates/welcome.html",
+    controller: 'WelcomeCtrl'
+      
   })
 
   .state('app.leaderboard', {
@@ -85,6 +80,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
       'menuContent': {
         templateUrl: "templates/questroom.html",
         controller: 'questroom'
+      }
+    }
+  })
+
+    .state('app.quest', {
+    url: "/quest",
+    abstract: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/quest.html",
+        controller: 'quest'
       }
     }
   })
@@ -122,11 +128,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
     }
   })
   
-
-
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise(function() {
-    console.log('other')
-    return '/login'
-  });
+  $urlRouterProvider.otherwise('/welcome');
 });
