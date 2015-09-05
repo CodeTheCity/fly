@@ -21,7 +21,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngAnimate'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
   $stateProvider
 
   .state('login', {

@@ -98,62 +98,11 @@ angular.module('starter.controllers', [])
   };
 
 
-  // $scope.data = $http({
-  //   method: 'GET',
-  //   dataType: 'jsonp',
-  //   url: 'http://codethecity-fly.herokuapp.com/quest/species/'
-    // params: data
-
-  // }).success(function(data, status) {
-    var data = [
-    {
-        "Common name": "Whorl-grass", 
-        "Group": "flowering plant", 
-        "International / UK status": "", 
-        "Lothian status": "VL", 
-        "Scientific name": "Catabrosa  aquatica", 
-        "Scottish status": "", 
-        "_id": 368
-    }, 
-    {
-        "Common name": "water beetle", 
-        "Group": "insect - beetle (Coleoptera)", 
-        "International / UK status": "NB", 
-        "Lothian status": "", 
-        "Scientific name": "Hydroporus  ferrugineus", 
-        "Scottish status": "", 
-        "_id": 143
-    }, 
-    {
-        "Common name": "Exile", 
-        "Group": "insect - moth", 
-        "International / UK status": "", 
-        "Lothian status": "VL", 
-        "Scientific name": "Apamea zeta subsp. marmorata", 
-        "Scottish status": "", 
-        "_id": 195
-    }, 
-    {
-        "Common name": "Common Kingfisher", 
-        "Group": "bird", 
-        "International / UK status": "BCA W1", 
-        "Lothian status": "", 
-        "Scientific name": "Alcedo atthis", 
-        "Scottish status": "SBL", 
-        "_id": 23
-    }, 
-    {
-        "Common name": "Betony", 
-        "Group": "flowering plant", 
-        "International / UK status": "", 
-        "Lothian status": "VL", 
-        "Scientific name": "Stachys officinalis", 
-        "Scottish status": "", 
-        "_id": 444
-    }
-]
-    $scope.qwop = data;
-  // });
+  $http.get('http://codethecity-fly.herokuapp.com/quest/species/')
+      .success(function(data, status) {
+          console.log('data');
+          $scope.data = data;
+      });
 
 })
 
