@@ -3,33 +3,14 @@ from flask import Flask, render_template, Response
 from flask_restful import Resource, Api, reqparse
 from lib.db import Doc, Nature, Find, User, Quest, db
 import datetime
-
+from flask_cors import CORS
 
 from flask.ext.cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 
-try:
-    from flask.ext.cors import CORS  # The typical way to import flask-cors
-except ImportError:
-    # Path hack allows examples to be run without installation.
-    import os
-    parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    os.sys.path.insert(0, parentdir)
-
-    from flask.ext.cors import CORS
-
-
-
-#app = Flask(__name__)
-
-
-#CORS(app, allow_headers='Content-Type')
 api = Api(app)
-#cj = None
-
 
 @app.route('/current_quest')
 @cross_origin()
@@ -43,18 +24,12 @@ def get_quest():
 
 
 
-
-
-
-
 @app.route('/')
-@cross_origin()
 def welcome():
     return render_template('welcome.html') 
 
     
 @app.route('/api/time')
-@cross_origin()
 def get_next_quest_time():
     q = Quest()
     latest = q.pick_one()

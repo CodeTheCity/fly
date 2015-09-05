@@ -1,6 +1,5 @@
 Flask
 flask-restful
 flask-login
+flask-cors
 pymongo
-ext
-cross_origin
