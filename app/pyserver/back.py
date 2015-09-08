@@ -75,6 +75,9 @@ def get5Creatures():
     #print len(dt)
     #return c5
     if len(dt) == 5:
+        print "="*80
+        for i in c5:
+            print i["latin"]
         return c5
     else:
         #print "DUPLICATES"
@@ -118,8 +121,8 @@ while 1:
         continue
         
     while time.time() < nc:
-        sys.stdout.write("\rNext quests in: "+ str(int((nc-time.time())//3600)) +"h "+ str(int(((nc-time.time())//60)%60)) +"m "+ str(int((nc-time.time())%60)) +"s            ")
-        #pass
+        #sys.stdout.write("\rNext quests in: "+ str(int((nc-time.time())//3600)) +"h "+ str(int(((nc-time.time())//60)%60)) +"m "+ str(int((nc-time.time())%60)) +"s            ")
+        pass
 
     
 
