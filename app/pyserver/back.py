@@ -10,11 +10,11 @@ def get5Creatures():
     
     c=c["result"]
     
-    c5 = {}
+    c5 = [None]*5
     
     dt = {}
     
-    for i in ("0","1","2","3","4"):
+    for i in xrange(5):
         cc = c["records"][random.randint(0,len(c["records"])-1)]
         c5[i] = {"name":cc["Common name"],"latin":cc["Scientific name"],"type":cc["Group"],"desc":"","img":"","id":cc["_id"]}
         fixedlatin=""
@@ -110,8 +110,13 @@ while 1:
 
     puttofile(nt,nc)
 
-    nt=get5Creatures()
-
+    try:
+        nt=get5Creatures()
+    except:
+        print "An error occured. Retrying in 5 minutes."
+        time.sleep(300)
+        continue
+        
     while time.time() < nc:
         sys.stdout.write("\rNext quests in: "+ str(int((nc-time.time())//3600)) +"h "+ str(int(((nc-time.time())//60)%60)) +"m "+ str(int((nc-time.time())%60)) +"s            ")
         #pass
